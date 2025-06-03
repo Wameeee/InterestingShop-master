@@ -53,6 +53,11 @@ public class OrderServiceImpl implements OrderService {
             baseOrder.setCreateTime(new Date());
             baseOrder.setAmount(shopCart.getAmount());
             baseOrder.setOrderNo(StringUtils.randomUUID());
+            baseOrder.setCost(shopCart.getAmount()); // 设置cost字段
+            baseOrder.setSerialNumber(StringUtils.randomUUID()); // 设置serialNumber字段
+            baseOrder.setPayType(1); // 设置默认支付类型
+            baseOrder.setStatus(1); // 设置默认订单状态
+            // 不设置addressId字段，因为数据库表中没有这个字段
             orderDao.save(baseOrder);
             //增加订单对应的明细信息
             for (ShopGoods shopGoods : shopCart.getShopGoodsList()) {
@@ -60,6 +65,7 @@ public class OrderServiceImpl implements OrderService {
                 orderInfo.setBaseOrderId(baseOrder.getId());
                 orderInfo.setAmount(shopGoods.getAmount());
                 orderInfo.setGoods(shopGoods.getGoods());
+                orderInfo.setGoodsId(shopGoods.getGoods().getId());
                 orderInfo.setBuyNum(shopGoods.getBuyNum());
                 orderInfoDao.save(orderInfo);
                 //更新商品表的库存

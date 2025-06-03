@@ -131,12 +131,11 @@ public class BaseOrderDaoImpl extends BaseDaoImpl implements BaseOrderDao {
 		BaseOrder baseOrder = new BaseOrder();
 		baseOrder.setId(rs.getInt("id"));
 		baseOrder.setUserId(rs.getInt("userId"));
-		baseOrder.setAddressId(rs.getInt("addressId"));
+		baseOrder.setUserAddress(rs.getString("userAddress"));
 		baseOrder.setCreateTime(rs.getDate("createTime"));
-		baseOrder.setCost(rs.getFloat("cost"));
-		baseOrder.setSerialNumber(rs.getString("serialNumber"));
-		baseOrder.setPayType(rs.getInt("payType"));
-		baseOrder.setStatus(rs.getInt("status"));
+		baseOrder.setAmount(rs.getFloat("amount"));
+		baseOrder.setOrderNo(rs.getString("orderNo"));
+		baseOrder.setAccount(rs.getString("account"));
 		return baseOrder;
 	}
 }

@@ -140,8 +140,6 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
         userAddress.setAddress(rs.getString("address"));
         userAddress.setCreateTime(rs.getDate("createTime"));
         userAddress.setRemark(rs.getString("remark"));
-        userAddress.setName(rs.getString("name"));
-        userAddress.setPhone(rs.getString("phone"));
         userAddress.setIsDefault(rs.getInt("isDefault"));
         return userAddress;
     }
@@ -150,7 +148,7 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
     public List<UserAddress> selectList(UserAddressParam params) {
         List<Object> paramsList = new ArrayList<Object>();   
         List<UserAddress> userAddresseList = new ArrayList<UserAddress>();
-        StringBuffer sql = new StringBuffer("  select id,userId,address,createTime,isDefault,remark,name,phone from t_user_address where 1=1 ");
+        StringBuffer sql = new StringBuffer("  select id,userId,address,createTime,isDefault,remark from t_user_address where 1=1 ");
         if(EmptyUtils.isNotEmpty(params.getUserId())){
             sql.append(" and userId = ? ");
             paramsList.add(params.getUserId());
